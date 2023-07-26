@@ -9,7 +9,6 @@ export type todolistsType = {
   id: string;
   title: string;
   filter: FilterValuesType;
-  //   todolistID: string
 };
 
 function App() {
@@ -48,19 +47,12 @@ function App() {
   });
 
   function removeTask(todolistID:string, id: string) {
-    // const obj = todolistID ===
     setTasks({...tasks, [todolistID]:tasks[todolistID].filter(item => item.id !== id)})
-    // let filteredTasks = tasks.filter(t => t.id != id);
-    // setTasks(filteredTasks);
   } 
 
   function addTask(todolistID:string, title: string) {
-    // const newArr = tasks[todolistID].push({id:v1(), title:title, isDone:false})
-    // let newTask = {id:v1(), title:title, isDone:false}
+
     setTasks({...tasks, [todolistID]:[{id:v1(), title:title, isDone:false}, ...tasks[todolistID]]})
-    // let task = {id: v1(), title: title, isDone: false};
-    // let newTasks = [task, ...tasks];
-    // setTasks(newTasks);
   }
 
   function changeStatus(todoListID: string, taskId: string, isDone: boolean) {
@@ -68,23 +60,8 @@ function App() {
     setTasks({...tasks, [todoListID]: tasks[todoListID].map(task => task.id === taskId ? {...task, isDone} : task)})
   }
 
-  //   let tasksForTodolist = tasks;
-
-  //   if (filter === "active") {
-  //     tasksForTodolist = tasks.filter((t) => t.isDone === false);
-  //   }
-  //   if (filter === "completed") {
-  //     tasksForTodolist = tasks.filter((t) => t.isDone === true);
-  //   }
-
   function changeFilter(todolistID: string, value: FilterValuesType) {
-
- 
-
       setTodolists(todolists.map(item => item.id === todolistID ? {...item, filter: value} : item));
-
-
-    // setFilter(value);
   }
 
   return (
@@ -113,16 +90,6 @@ function App() {
           />
         );
       })}
-
-      {/* <Todolist
-        title="What to learn"
-        tasks={tasksForTodolist}
-        removeTask={removeTask}
-        changeFilter={changeFilter}
-        addTask={addTask}
-        changeTaskStatus={changeStatus}
-        filter={filter}
-      /> */}
     </div>
   );
 }
